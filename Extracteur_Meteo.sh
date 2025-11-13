@@ -21,11 +21,11 @@ fi
 
 #=======
 TEMP_ACTUELLE=$(grep -o '[+-]\?[0-9]\{1,2\}' "$FICHIER" | head -n 1)
-TEMP_DEMAIN=$(grep -o '[+-]\?[0-9]\{1,2\}' "$FICHIER" | sed -n '2p')
+TEMP_DEMAIN=$(grep -o '[+-]\?[0-9]\{1,2\}' "$FICHIER" | sed -n '37p')
 echo "Données météo enregistrées dans $FICHIER"
 echo "Température actuelle : ${TEMP_ACTUELLE}°C"
 echo "Prévision demain : ${TEMP_DEMAIN}°C"
 #version 1 question 3 et 4
 DATE=$(date '+%Y-%m-%d - %H:%M')
-echo "$DATE - $1 : ${TEMP_ACTUELLE}C - ${TEMP_DEMAIN}C" > meteo.txt
+echo "$DATE - $1 : ${TEMP_ACTUELLE}°C - ${TEMP_DEMAIN}°C" > meteo.txt
 
