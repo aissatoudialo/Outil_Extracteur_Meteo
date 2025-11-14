@@ -11,3 +11,6 @@ Les sorties et erreurs sont enregistrées dans extraction.log.
 
 Pour consulter les résultats, lire le fichier de log :
 cat ~/meteo/extraction.log
+
+Note : GitHub ne lance pas le cron. 
+Le professeur ou toute autre personne devra configurer le cron sur son propre système Linux pour que l’automatisation fonctionne.
