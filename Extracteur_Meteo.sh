@@ -2,7 +2,20 @@
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <ville>"
-    exit 1
+    echo "Ville mise par défaut : Toulouse"
+    set -- "Toulouse"
+fi
+
+if ! [[ "$1" =~ ^[A-Za-z]+$ ]]; then
+	echo "Erreur : n'est pas une chaîne de caractères."
+    echo "Usage : $0 <ville>"
+	exit 1
+fi
+
+if [ $# -ne 1 ]; then
+	echo "Erreur : le nombre d'argument n'est pas correct."
+    echo "Usage : $0 <ville>"
+	exit 1
 fi
 
 VILLE=$1
