@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-    echo "Erreur : chaîne vide"
     echo "Usage: $0 <ville>"
     echo "Ville mise par défaut : Toulouse"
     set -- "Toulouse"
