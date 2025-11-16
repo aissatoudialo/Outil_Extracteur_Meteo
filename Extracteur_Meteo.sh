@@ -13,11 +13,14 @@ if ! [[ "$1" =~ ^[A-Za-z]+$ ]]; then
 	exit 1
 fi
 
-if [ $# -ne 1 ]; then
-	echo "Erreur : le nombre d'argument n'est pas correct."
-    echo "Usage : $0 <ville>"
-	exit 1
+if [ $# -gt 2 ]; then
+        echo "Erreur : trop d'arguments."
+    echo "Usage : $0 <ville> [--archive]"
+        exit 1
 fi
+
+OPTION=$2
+
 
 VILLE=$1
 FICHIER="meteo_brut.txt"
@@ -47,5 +50,12 @@ echo "Température actuelle : ${TEMP_ACTUELLE}°C"
 echo "Prévision demain : ${TEMP_DEMAIN}°C"
 #version 1 question 3 et 4
 DATE=$(date '+%Y-%m-%d - %H:%M')
-echo "$DATE - $1 : ${TEMP_ACTUELLE}°C - ${TEMP_DEMAIN}°C" > meteo.txt
+LIGNE="$DATE - $VILLE : ${TEMP_ACTUELLE}°C - ${TEMP_DEMAIN}°C"
 
+echo "$LIGNE" >> meteo.txt
+
+if [ "$OPTION" == "--archive" ]; then
+    JOUR=$(date '+%Y%m%d')
+    FICHIER_HISTO="meteo_${JOUR}.txt"
+    echo "$LIGNE" >> "$FICHIER_HISTO"
+fi
