@@ -21,7 +21,13 @@ fi
 
 #=======
 TEMP_ACTUELLE=$(grep -o '[+-]\?[0-9]\{1,2\}' "$FICHIER" | head -n 1)
-TEMP_DEMAIN=$(grep -o '[+-]\?[0-9]\{1,2\}' "$FICHIER" | sed -n '37p')
+JOUR_DEMAIN=$(grep -E '┤  [A-Z][a-z]{2} ' "$FICHIER" | sed -n '2p')
+LN=$(grep -n -F "$JOUR_DEMAIN" "$FICHIER" | cut -d: -f1)
+TEMP_DEMAIN="N/A"
+
+if [ -n "$LN" ]; then
+  TEMP_DEMAIN=$(sed -n "$((LN+1)),$((LN+10))p" "$FICHIER" | grep -o '+[0-9]\+' | head -n1)
+fi
 echo "Données météo enregistrées dans $FICHIER"
 echo "Température actuelle : ${TEMP_ACTUELLE}°C"
 echo "Prévision demain : ${TEMP_DEMAIN}°C"
