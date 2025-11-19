@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-	
     echo "Usage: $0 <ville>"
     echo "Ville mise par défaut : Toulouse"
     set -- "Toulouse"
@@ -45,12 +44,17 @@ TEMP_DEMAIN="N/A"
 if [ -n "$LN" ]; then
   TEMP_DEMAIN=$(sed -n "$((LN+1)),$((LN+10))p" "$FICHIER" | grep -o '+[0-9]\+' | head -n1)
 fi
+VENT=$(grep -m1 "km/h" meteo_brut.txt | grep -o "[0-9]\+-[0-9]\+ km/h\|[0-9]\+ km/h")
+VISIBILITE=$(grep -m1 "km/h" -A1 meteo_brut.txt | sed -n '2p' | grep -o "[0-9]\+ km")
+
 echo "Données météo enregistrées dans $FICHIER"
 echo "Température actuelle : ${TEMP_ACTUELLE}°C"
 echo "Prévision demain : ${TEMP_DEMAIN}°C"
+echo "Vent : ${VENT}"
+echo "Visibilité : ${VISIBILITE}"
 #version 1 question 3 et 4
 DATE=$(date '+%Y-%m-%d - %H:%M')
-LIGNE="$DATE - $VILLE : ${TEMP_ACTUELLE}°C - ${TEMP_DEMAIN}°C"
+LIGNE="$DATE - $VILLE : ${TEMP_ACTUELLE}°C - ${TEMP_DEMAIN}°C - ${VENT} - ${VISIBILITE}"
 
 echo "$LIGNE" >> meteo.txt
 
