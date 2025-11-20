@@ -51,4 +51,6 @@ S’il existe déjà, l’exécution du script ajoute simplement une nouvelle li
 Les variantes 1 et 2  vont juste rajouter des éléments supplémentaires sur le script mais l'exécution reste la même. 
 La variante 1 permet de rajouter à l'extraction des températures actuelles et demain la vitesse du vent et la visibilité. 
 La variante 2 permet d’ajouter une option de sauvegarde sous format JSON.
+il faut l'excuter en faisant ./Extracteur_Meteo.sh <ville> --format
+ensuite faire cat meteo.json et on verra l'affichage en json.
 
