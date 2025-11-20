@@ -63,3 +63,15 @@ if [ "$OPTION" == "--archive" ]; then
     FICHIER_HISTO="meteo_${JOUR}.txt"
     echo "$LIGNE" >> "$FICHIER_HISTO"
 fi
+
+if [ "$OPTION" = "--format" ]; then
+    echo "{" > "meteo.json"
+    echo "\"date\": \"$(date '+%Y-%m-%d')\"," >> "meteo.json"
+    echo "\"heure\": \"$(date '+%H:%M')\"," >> "meteo.json"
+    echo "\"ville\": \"$VILLE\"," >> "meteo.json"
+    echo "\"temperature\": \"$TEMP_ACTUELLE°C\"," >> "meteo.json"
+    echo "\"temperature lendemain\": \"$TEMP_DEMAIN°C\"" >> "meteo.json"
+    echo "\"Vent\": \"$VENT\"," >> "meteo.json"
+    echo "\"Visibilité\": \"$VISIBILITE\"" >> "meteo.json"
+    echo "}" >> "meteo.json"
+fi
