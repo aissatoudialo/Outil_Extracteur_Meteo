@@ -69,7 +69,7 @@ if [ "$OPTION" = "--format" ]; then
     echo "\"date\": \"$(date '+%Y-%m-%d')\"," >> "meteo.json"
     echo "\"heure\": \"$(date '+%H:%M')\"," >> "meteo.json"
     echo "\"ville\": \"$VILLE\"," >> "meteo.json"
-    echo "\"temperature\": \"$TEMP_ACTUELLE°C\"," >> "meteo.json"
+    echo "\"temperature actuelle\": \"$TEMP_ACTUELLE°C\"," >> "meteo.json"
     echo "\"temperature lendemain\": \"$TEMP_DEMAIN°C\"" >> "meteo.json"
     echo "\"Vent\": \"$VENT\"," >> "meteo.json"
     echo "\"Visibilité\": \"$VISIBILITE\"" >> "meteo.json"
